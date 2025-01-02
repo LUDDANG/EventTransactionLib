@@ -149,12 +149,12 @@ dependencies:
 
 ```java
 public class EventTransactionExample {
-	@EventTransaction
+    @EventTransaction
     private void onExampleEvent(Example example) {
-		System.out.println(example.id);
+        System.out.println(example.id);
     } 
-	
-	public record Example(String id) {}
+    
+    public record Example(String id) {}
 }
 ```
 
