@@ -1,0 +1,54 @@
+plugins {
+    id 'maven-publish'
+    id 'com.github.johnrengelman.shadow'
+}
+
+
+sourceCompatibility = targetCompatibility = "17"
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://repo.trinarywolf.net/spigot/"
+    }
+    maven {
+        url "https://repo.trinarywolf.net/luddang/"
+    }
+}
+
+jar {
+    finalizedBy shadowJar
+}
+
+shadowJar {
+    archiveClassifier = ''
+    archiveBaseName.set("EventTransactionLib-Bukkit")
+}
+
+
+dependencies {
+    compileOnly("org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT")
+    implementation(project(":common"))
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "Reposilite"
+            allowInsecureProtocol(true)
+            url(rootProject.properties["reposilite.fy.latest"])
+            credentials {
+                username(rootProject.properties['reposilite.user'] as String)
+                password(rootProject.properties['reposilite.token'] as String)
+            }
+        }
+    }
+    publications {
+        "$project.name"(MavenPublication) {
+            groupId 'skywolf46'
+            artifactId "allinone"
+            version rootProject.properties['version'] as String
+            from components.java
+        }
+    }
+}
