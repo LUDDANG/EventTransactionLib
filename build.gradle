@@ -1,0 +1,79 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2' apply false
+    id 'maven-publish'
+}
+
+// =========================================================
+//                Dependency / Repositories
+// =========================================================
+
+sourceCompatibility = targetCompatibility = "17"
+
+repositories {
+    mavenCentral()
+    maven {
+        allowInsecureProtocol(true)
+        url rootProject.properties["reposilite.release"]
+    }
+}
+
+
+dependencies {
+    subprojects.forEach {
+        println it.name
+        implementation(project(it.name))
+    }
+}
+
+// =========================================================
+//                        Tasks
+// =========================================================
+
+build {
+    enabled = false
+}
+
+// =========================================================
+//                Subproject Predefines
+// =========================================================
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'com.github.johnrengelman.shadow'
+    apply plugin: 'maven-publish'
+
+    sourceCompatibility = targetCompatibility = "17"
+
+    repositories {
+        mavenCentral()
+        maven {
+            allowInsecureProtocol(true)
+            url rootProject.properties["reposilite.snapshot"]
+        }
+        maven {
+            allowInsecureProtocol(true)
+            url rootProject.properties["reposilite.release"]
+        }
+    }
+
+    jar {
+        archiveBaseName.set("EventTransactionLib-${capitalizeString(project.name)}")
+    }
+
+
+    test {
+        useJUnitPlatform()
+    }
+}
+
+private static String capitalizeString(String origin) {
+    StringBuilder sb = new StringBuilder(origin);
+    sb.setCharAt(0, sb.charAt(0).toUpperCase());
+    int current = sb.indexOf('-')
+    while (current != -1) {
+        sb.setCharAt(current + 1, sb.charAt(current + 1).toUpperCase());
+        current = sb.indexOf('-', current + 1)
+    }
+    return sb.toString()
+}
