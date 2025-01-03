@@ -148,7 +148,8 @@ dependencies:
 먼저, 이벤트 리스너 객체 클래스를 생성합니다.
 
 ```java
-public class EventTransactionExample {
+// 이벤트 리스너 등록중의 실수를 방지하기 위해 모든 이벤트 리스넌는 EventTransactionListener 인터페이스를 상속해야 합니다. 
+public class EventTransactionExample implements EventTransactionListener {
     @EventTransaction
     private void onExampleEvent(Example example) {
         System.out.println(example.id);
