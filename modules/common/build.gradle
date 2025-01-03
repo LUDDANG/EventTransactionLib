@@ -1,0 +1,24 @@
+plugins {
+    id 'maven-publish'
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "Reposilite"
+            url("https://repo.trinarywolf.net/luddang")
+            credentials {
+                username(rootProject.properties['reposilite.user'] as String)
+                password(rootProject.properties['reposilite.token'] as String)
+            }
+        }
+    }
+    publications {
+        "$project.name"(MavenPublication) {
+            groupId "skywolf46"
+            artifactId "eventtransactionlib-common"
+            version rootProject.properties['version'] as String
+            from components.java
+        }
+    }
+}
