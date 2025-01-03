@@ -16,7 +16,7 @@ plugins {
 
 
 group = mod_group_id
-version = mod_version
+String mod_version = version
 
 base {
     archivesName = mod_id
