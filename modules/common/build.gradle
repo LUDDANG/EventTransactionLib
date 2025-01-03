@@ -15,7 +15,7 @@ publishing {
     }
     publications {
         "$project.name"(MavenPublication) {
-            groupId "skywolf46"
+            groupId "live.luya"
             artifactId "eventtransactionlib-common"
             version rootProject.properties['version'] as String
             from components.java
