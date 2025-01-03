@@ -66,7 +66,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("live.luya:eventtransactionlib-common:1.0.0")
+    compileOnly("live.luya:eventtransactionlib-common:1.0.1")
 }
 ```
 <br/>
@@ -93,7 +93,7 @@ Maven은 compile 스코프를 통해 패키징에 포함됨을 방지합니다.
     <dependency>
         <groupId>live.luya</groupId>
         <artifactId>eventtransactionlib-common</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </dependency>
     <!-- ... -->
 </dependencies>
