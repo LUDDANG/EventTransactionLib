@@ -2,6 +2,11 @@ plugins {
     id 'maven-publish'
 }
 
+dependencies {
+    compileOnly("org.projectlombok:lombok:1.18.36")
+    annotationProcessor("org.projectlombok:lombok:1.18.36")
+}
+
 publishing {
     repositories {
         maven {
