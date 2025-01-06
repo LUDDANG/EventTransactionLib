@@ -30,3 +30,25 @@ dependencies {
     compileOnly("org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT")
     implementation(project(":common"))
 }
+
+
+publishing {
+    repositories {
+        maven {
+            name = "Reposilite"
+            url("https://repo.trinarywolf.net/luddang")
+            credentials {
+                username(rootProject.properties['reposilite.user'] as String)
+                password(rootProject.properties['reposilite.token'] as String)
+            }
+        }
+    }
+    publications {
+        "$project.name"(MavenPublication) {
+            groupId "live.luya"
+            artifactId "eventtransactionlib-bukkit"
+            version rootProject.properties['version'] as String
+            from components.java
+        }
+    }
+}
