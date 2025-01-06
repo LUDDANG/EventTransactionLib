@@ -66,7 +66,11 @@ repositories {
 }
 
 dependencies {
-    compileOnly("live.luya:eventtransactionlib-common:1.0.1")
+    compileOnly("live.luya:eventtransactionlib-common:1.1.0")
+    // Bukkit API를 사용하는 경우 주석을 해제하세요,
+//    compileOnly("live.luya:eventtransactionlib-bukkit:1.1.0")
+    // Forge API를 사용하는 경우 주석을 해제하세요,
+//    compileOnly("live.luya:eventtransactionlib-forge:1.1.0")
 }
 ```
 <br/>
@@ -93,8 +97,20 @@ Maven은 compile 스코프를 통해 패키징에 포함됨을 방지합니다.
     <dependency>
         <groupId>live.luya</groupId>
         <artifactId>eventtransactionlib-common</artifactId>
-        <version>1.0.1</version>
+        <version>1.1.0</version>
     </dependency>
+<!-- Bukkit API를 사용하는 경우 주석을 해제하세요 -->
+<!--    <dependency>-->
+<!--        <groupId>live.luya</groupId>-->
+<!--        <artifactId>eventtransactionlib-bukkit</artifactId>-->
+<!--        <version>1.1.0</version>-->
+<!--    </dependency>-->
+ <!-- Forge API를 사용하는 경우 주석을 해제하세요-->
+<!--    <dependency>-->
+<!--        <groupId>live.luya</groupId>-->
+<!--        <artifactId>eventtransactionlib-forge</artifactId>-->
+<!--        <version>1.0.1</version>-->
+<!--    </dependency>-->
     <!-- ... -->
 </dependencies>
 ```
@@ -184,6 +200,18 @@ public class EventTransactionExampleMod {
 해당 프로젝트로 예를 들자면, 공동 작업자에게 제공할 클래스는 `common` 혹은 `api` 모듈에,
 
 특정 플랫폼에 귀속되는 코드는 `platform`과 같은 모듈로 분리하여 제공된 모듈만 퍼블리싱하는 것이 권장됩니다.
+
+## 유틸리티 클래스에 대한 이해
+EventTransactionLib의 유틸리티는 각 플랫폼에 귀속된 유틸리티 클래스입니다.
+
+특정 플랫폼에 귀속된 데이터 클래스를 플러그인과 모드의 통신을 위해 커먼에 포함된 클래스로 변환하거나,
+
+그 역의 과정을 진행합니다.
+
+어떠한 유틸리티 클래스던 간에 `EventTransactionUtil` 클래스명을 가지고 있으며, 
+
+플랫폼 라이브러리가 추가되지 않으면 사용할 수 없습니다.
+
 
 
 ### 로고 이미지 출처
