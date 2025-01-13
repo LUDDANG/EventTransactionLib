@@ -32,7 +32,10 @@ public enum RegistrationOrder {
 					return api;
 				}
 			}
+		} else {
+			return api;
 		}
+
 		throw new IllegalStateException("Platform " + this + " is not ready yet; Did the wrong platform requested, or the priority is not set correctly?");
 	}
 

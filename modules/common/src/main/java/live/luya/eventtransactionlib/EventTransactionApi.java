@@ -1,6 +1,9 @@
 package live.luya.eventtransactionlib;
 
+import java.util.List;
+import java.util.Set;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public interface EventTransactionApi {
 
@@ -29,10 +32,12 @@ public interface EventTransactionApi {
 
 	/**
 	 * Trigger event handler.
+	 * Output result is not equals to input value.
 	 *
 	 * @param event Event object.
+	 *
 	 */
-	void triggerHandler(Object event);
+	<T> T triggerHandler(T event);
 
 	/**
 	 * Register via specific environment handler.
@@ -50,8 +55,8 @@ public interface EventTransactionApi {
 	 *
 	 * @param order       Registration order
 	 * @param apiConsumer API consumer
-	 * -- Deprecated --
-	 * Use {@link #prepareRegistration(RegistrationOrder, RegistrationOrder, Consumer)} instead.
+	 *                    -- Deprecated --
+	 *                    Use {@link #prepareRegistration(RegistrationOrder, RegistrationOrder, Consumer)} instead.
 	 */
 	@Deprecated
 	void prepareRegistration(RegistrationOrder order, Consumer<EventTransactionApi> apiConsumer);
@@ -60,18 +65,21 @@ public interface EventTransactionApi {
 	/**
 	 * Prepare registration until requested order is matched.
 	 *
-	 * @param order Registration order
+	 * @param order          Registration order
 	 * @param targetPlatform Target platform
-	 * @param apiConsumer API consumer
+	 * @param apiConsumer    API consumer
 	 */
 	void prepareRegistration(RegistrationOrder order, RegistrationOrder targetPlatform, Consumer<EventTransactionApi> apiConsumer);
 
-	/**
-	 * Stack registration order, and executes it when order is matched.
-	 * This is internal API, so do not use unless you have to use it.
-	 *
-	 * @param order Registration order
-	 */
-	@Deprecated
-	void stackRegistrationOrder(RegistrationOrder order);
+	void registerOrderProvider(Supplier<Set<RegistrationOrder>> provider);
+
+	void registerClassLoaderProvider(Supplier<List<ClassLoader>> provider);
+
+	void onOrderStacked();
+
+	void attachExternalClassLoaders(List<ClassLoader> loaders);
+
+	void detachExternalClassLoaders(List<ClassLoader> loaders);
+
+	ClassLoader getPlatformClassLoader();
 }
