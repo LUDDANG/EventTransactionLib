@@ -6,18 +6,34 @@ import java.util.List;
 import java.util.Set;
 
 public enum RegistrationOrder {
-	BUKKIT(), FORGE(), FABRIC(), MOD_BUKKIT(Set.of(FORGE), Set.of(FABRIC)), HYBRID_MOD_BUKKIT(Set.of(FORGE, BUKKIT), Set.of(FABRIC, BUKKIT));
+	BUKKIT(List.of()), FORGE(List.of()), FABRIC(List.of()), MOD_BUKKIT(List.of(FORGE, FABRIC), Set.of(FORGE), Set.of(FABRIC)), HYBRID_MOD_BUKKIT(List.of(FORGE, FABRIC, BUKKIT), Set.of(FORGE, BUKKIT), Set.of(FABRIC, BUKKIT));
+
+	private final List<RegistrationOrder> platformApi;
 
 	private final List<Set<RegistrationOrder>> orders;
 
 	@SafeVarargs
-	RegistrationOrder(Set<RegistrationOrder>... acceptableOrders) {
+	RegistrationOrder(List<RegistrationOrder> platformApi, Set<RegistrationOrder>... acceptableOrders) {
+		this.platformApi = platformApi;
 		this.orders = new ArrayList<>();
 		orders.addAll(Arrays.asList(acceptableOrders));
 	}
 
 	RegistrationOrder() {
-		this(Set.of());
+		this(List.of(), Set.of());
+	}
+
+	public EventTransactionApi getPlatformApi() {
+		EventTransactionApi api = EventTransactionApiProvider.getApi(this);
+		if (api == null) {
+			for (RegistrationOrder order : platformApi) {
+				api = EventTransactionApiProvider.getApi(order);
+				if (api != null) {
+					return api;
+				}
+			}
+		}
+		throw new IllegalStateException("Cannot find platform API for " + this);
 	}
 
 	public boolean isSingleOrder() {

@@ -12,7 +12,7 @@ public class EventTransactionLibMod {
 	public static final String MODID = "event_transaction_lib";
 
 	public EventTransactionLibMod() {
-		EventTransactionApiProvider.setApi(new EventTransactionApiImpl());
+		EventTransactionApiProvider.appendApi(RegistrationOrder.FORGE, new EventTransactionApiImpl());
 		EventTransactionApi.getApi().stackRegistrationOrder(RegistrationOrder.FORGE);
 	}
 }

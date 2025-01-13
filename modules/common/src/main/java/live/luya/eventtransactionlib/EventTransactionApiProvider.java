@@ -1,18 +1,22 @@
 package live.luya.eventtransactionlib;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class EventTransactionApiProvider {
-	private static EventTransactionApi api;
+	private static Map<RegistrationOrder, EventTransactionApi> apiMap = new HashMap<>();
 
 	public static EventTransactionApi getApi() {
-		return api;
+		return apiMap.values().stream().findFirst().orElse(null);
 	}
 
-	public static void setApi(EventTransactionApi api) {
-		if (EventTransactionApiProvider.api != null) {
-			System.err.println("[EventTransactionLib] API is already set. Ignoring new API.");
-			return;
-		}
-		System.out.println("[EventTransactionLib] Registered new EventTransaction API. (" + api.getClass().getName() + ")");
-		EventTransactionApiProvider.api = api;
+	public static EventTransactionApi getApi(RegistrationOrder order) {
+		return apiMap.get(order);
+	}
+
+	public static void appendApi(RegistrationOrder order, EventTransactionApi api) {
+		System.out.println("[EventTransactionLib] Registered new EventTransaction API to platform " + order.name() + ". (" + api.getClass()
+				.getName() + ")");
+		apiMap.put(order, api);
 	}
 }
