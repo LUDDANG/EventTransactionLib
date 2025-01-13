@@ -138,7 +138,7 @@ EventTransactionLib은 클라이언트 사이드 모드가 아닙니다.
 ```toml
 # 현재 모드의 디펜던시로 추가합니다.
 [[dependencies."${mod_id}"]]
-# resonance 모드를 디펜던시로 지정합니다.
+# EventTransactionLib 모드를 디펜던시로 지정합니다.
 modId = "event_transaction_lib"
 # 필수 디펜던시입니다.
 mandatory = true
@@ -164,7 +164,7 @@ dependencies:
 먼저, 이벤트 리스너 객체 클래스를 생성합니다.
 
 ```java
-// 이벤트 리스너 등록중의 실수를 방지하기 위해 모든 이벤트 리스넌는 EventTransactionListener 인터페이스를 상속해야 합니다. 
+// 이벤트 리스너 등록중의 실수를 방지하기 위해 모든 이벤트 리스너는 EventTransactionListener 인터페이스를 상속해야 합니다. 
 public class EventTransactionExample implements EventTransactionListener {
     @EventTransaction
     private void onExampleEvent(Example example) {
@@ -189,7 +189,9 @@ public class EventTransactionExampleMod {
         RegistrationOrder.HYBRID_MOD_BUKKIT, 
         api -> {
             // private 메서드라도 @EventTransaction 어노테이션이 있다면 등록됩니다.
-            api.registerListener(new EventTransactionExample());	
+            // 사용할 대상 플랫폼의 API를 사용하지 않으면 클래스로더 혼용 문제로 오류가 발생합니다.
+            // 이 예제는 플러그인의 커먼 API를 사용했다는 가정 하에 작성되었습니다. 
+            RegistrationOrder.BUKKIT.getPlatformApi().registerListener(new EventTransactionExample());	
         });
     }
 }
