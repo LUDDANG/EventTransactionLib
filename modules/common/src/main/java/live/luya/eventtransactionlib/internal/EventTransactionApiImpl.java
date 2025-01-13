@@ -80,6 +80,17 @@ public class EventTransactionApiImpl implements EventTransactionApi {
 	}
 
 	@Override
+	public void prepareRegistration(RegistrationOrder order, RegistrationOrder targetPlatform, Consumer<EventTransactionApi> apiConsumer) {
+		if (order.doesPassed(currentRegistrationOrder)) {
+			apiConsumer.accept(targetPlatform.getPlatformApi());
+		} else {
+			registrationOrderMap.computeIfAbsent(order, k -> new ArrayList<>()).add(api -> {
+				apiConsumer.accept(targetPlatform.getPlatformApi());
+			});
+		}
+	}
+
+	@Override
 	public void stackRegistrationOrder(RegistrationOrder order) {
 		currentRegistrationOrder.add(order);
 		System.out.println("[EventTransactionLib] Registration order stacked: " +
