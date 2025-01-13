@@ -2,10 +2,23 @@
     <img align="center" src="images/logo.png" alt="EventTransaction"/><br/><br/>
 </p>
 
+## 다운로드
+
+| 버전 코드      | 버전                                                                         | 주요 기능             |
+|------------|----------------------------------------------------------------------------|-------------------|
+| Liberation | [1.4.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.4.0) | 데이터 클래스 재구축 기능 추가 |
+|            | [1.3.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.3.0) | 플랫폼 귀속 API 추가     |
+|            | [1.2.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.2.0) | 등록 대기 API 추가      |
+|            | [1.1.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.1.0) | 플랫폼 유틸리티 추가       |
+|            | [1.0.1](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.0.1) | 오류 수정             |
+|            | [1.0.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.0.0) | 프로젝트 기초           |
+
 ## 개요
+
 EventTransactionLib은 최대한 단순한 구현으로 플러그인과 모드의 이벤트 브릿지 역할을 수행하는 라이브러리입니다.
 
 ## 구현 상세
+
 EventTransactionLib은 총 3개의 파츠로 이루어져 있습니다.
 
 `커먼`, `플러그인`, `모드`로 구분되며, 각자 다른 역할을 수행합니다.
@@ -40,8 +53,6 @@ EventTransactionLib은 하나의 커먼 모듈을 통해 모든 기능을 활용
 
 2가지 방법으로 적용이 가능하며, 사용하는 플랫폼에 따라 맞추어 적용해야 합니다.
 
-
-
 ### Gradle
 
 Gradle은 compileOnly를 통한 바이너리 포함을 회피하는 형태로 적용됩니다.
@@ -66,13 +77,14 @@ repositories {
 }
 
 dependencies {
-    compileOnly("live.luya:eventtransactionlib-common:1.3.0")
+    compileOnly("live.luya:eventtransactionlib-common:1.4.0")
     // Bukkit API를 사용하는 경우 주석을 해제하세요,
-//    compileOnly("live.luya:eventtransactionlib-bukkit:1.3.0")
+//    compileOnly("live.luya:eventtransactionlib-bukkit:1.4.0")
     // Forge API를 사용하는 경우 주석을 해제하세요,
-//    compileOnly("live.luya:eventtransactionlib-forge:1.3.0")
+//    compileOnly("live.luya:eventtransactionlib-forge:1.4.0")
 }
 ```
+
 <br/>
 
 ### Maven
@@ -82,6 +94,7 @@ Maven은 compile 스코프를 통해 패키징에 포함됨을 방지합니다.
 다음 구문을 참고하여 반영하세요 :
 
 ```xml
+
 <repositories>
     <!-- ... -->
     <repository>
@@ -93,37 +106,35 @@ Maven은 compile 스코프를 통해 패키징에 포함됨을 방지합니다.
 </repositories>
 
 <dependencies>
-    <!-- ... -->
-    <dependency>
-        <groupId>live.luya</groupId>
-        <artifactId>eventtransactionlib-common</artifactId>
-        <version>1.3.0</version>
-    </dependency>
+<!-- ... -->
+<dependency>
+    <groupId>live.luya</groupId>
+    <artifactId>eventtransactionlib-common</artifactId>
+    <version>1.4.0</version>
+</dependency>
 <!-- Bukkit API를 사용하는 경우 주석을 해제하세요 -->
 <!--    <dependency>-->
 <!--        <groupId>live.luya</groupId>-->
 <!--        <artifactId>eventtransactionlib-bukkit</artifactId>-->
-<!--        <version>1.1.0</version>-->
+<!--        <version>1.4.0</version>-->
 <!--    </dependency>-->
- <!-- Forge API를 사용하는 경우 주석을 해제하세요-->
+<!-- Forge API를 사용하는 경우 주석을 해제하세요-->
 <!--    <dependency>-->
 <!--        <groupId>live.luya</groupId>-->
 <!--        <artifactId>eventtransactionlib-forge</artifactId>-->
-<!--        <version>1.0.1</version>-->
+<!--        <version>1.4.0</version>-->
 <!--    </dependency>-->
-    <!-- ... -->
+<!-- ... -->
 </dependencies>
 ```
 
-
 ## API
+
 EventTransactionLib은 `EventTransactionApiProvider`을 통해 `EventTransactionApi` 인스턴스를 가져오고,
 
 해당 인스턴스를 통해 이벤트 리스너를 등록하고, 이벤트를 호출합니다.
 
-
 플러그인 혹은 모드에 디펜던시를 정확히 지정하였고, 빌드 툴 설정을 완료하였다면 API의 사용이 가능합니다.
-
 
 ### 주의 사항
 
@@ -147,13 +158,15 @@ mandatory = true
 # 만약 1.0 버전 이상 모든 버전을 지정하려 한다면, "[1.0,)"으로 설정해야 합니다.
 # 버전 규칙에 대한 상세한 정보는 다음 링크의 메이븐 버전 포맷을 참고하세요.
 # https://cwiki.apache.org/confluence/display/MAVENOLD/Dependency+Mediation+and+Conflict+Resolution#DependencyMediationandConflictResolution-DependencyVersionRanges
-versionRange = "[1.3]"
+versionRange = "[1.4]"
 ordering = "NONE"
 side = "SERVER"
 ```
 
 ### Bukkit
+
 `src/main/resources/plugin.yml`에 다음 텍스트를 상황에 알맞게 조정하여 추가합니다.
+
 ```yaml
 # ...
 dependencies:
@@ -161,17 +174,62 @@ dependencies:
 ```
 
 ### API 사용 방법
+
+첫번째로, 이벤트 트랜잭션 호환 객체를 생성합니다.
+
+트랜잭션 호환 객체는 모드-플러그인간 공유 가능한 데이터 인스턴스를 뜻합니다.
+
+트랜잭션 객체에 대한 규칙은 다음과 같습니다 : 
+
+```
+- 트랜잭션 호환 객체는 레코드 클래스거나, 비어 있는 생성자가 있어야 한다.
+- 레코드 클래스일 경우, 메서드는 허용되나 생성자에서 지정한 변수 외의 전역 필드가 허용되지 않는다.
+- 일반 클래스일 경우, 비어있는 생성자가 있어야 한다.
+- 일반 클래스의 final 변수는 전달되지 않는다.
+- @TransactionExclude 어노테이션이 부여된 필드는 전달되지 않는다.
+```
+
+이 예제에서는 롬복과 일반 클래스, 레코드 클래스의 예제를 동시에 작성합니다.
+
+실제 사용에서는 하나만 골라 사용하세요.
+
+```java
+// 레코드 클래스를 사용할 경우
+public record Example(double sampleValue) {}
+
+// 일반 클래스를 사용할 경우
+public class Example {
+    private double sampleValue = 0.0;
+    
+    public Example() { }
+    
+    public Example(double sampleValue) {
+        this.sampleValue = sampleValue;
+    }
+}
+
+// 롬복을 사용할 경우
+@NoArgConstructor
+@AllArgConstructor
+@Getter
+public class Example {
+    private double sampleValue = 0.0;
+}
+```
+
+
 먼저, 이벤트 리스너 객체 클래스를 생성합니다.
 
 ```java
 // 이벤트 리스너 등록중의 실수를 방지하기 위해 모든 이벤트 리스너는 EventTransactionListener 인터페이스를 상속해야 합니다. 
 public class EventTransactionExample implements EventTransactionListener {
-    @EventTransaction
-    private void onExampleEvent(Example example) {
-        System.out.println(example.id);
-    } 
-    
-    public record Example(String id) {}
+	@EventTransaction
+	private void onExampleEvent(Example example) {
+		System.out.println(example.sampleValue);
+	}
+
+	public record Example(String id) {
+	}
 }
 ```
 
@@ -180,21 +238,24 @@ public class EventTransactionExample implements EventTransactionListener {
 어떠한 시점에 초기화를 원하느냐에 따라 다른 `RegistrationOrder`을 사용해야 합니다.
 
 ```java
+
 @Mod(ExampleMod.MODID)
 public class EventTransactionExampleMod {
     public EventTransactionExampleMod() {
         EventTransactionApiProvider.getApi().prepareRegistration(
-        // HYBRID_MOD_BUKKIT은 플러그인과 모드를 동시에 지원하는 버킷을 의미합니다.
-        // FORGE 혹은 FABRIC의 초기화가 진행되고, PLUGIN의 초기화가 진행된 이후에 호출됩니다.         
-        RegistrationOrder.HYBRID_MOD_BUKKIT, 
-        // Bukkit의 Plugin API에서 로드된 클래스로더를 통해 사용합니다. 
-		RegistrationOrder.BUKKIT,
-        api -> {
-            // private 메서드라도 @EventTransaction 어노테이션이 있다면 등록됩니다.
-            // 사용할 대상 플랫폼의 API를 사용하지 않으면 클래스로더 혼용 문제로 오류가 발생합니다.
-            // 이 예제는 플러그인의 커먼 API를 사용했다는 가정 하에 작성되었습니다. 
-            api.registerListener(new EventTransactionExample());	
-        });
+            // HYBRID_MOD_BUKKIT은 플러그인과 모드를 동시에 지원하는 버킷을 의미합니다.
+            // FORGE 혹은 FABRIC의 초기화가 진행되고, PLUGIN의 초기화가 진행된 이후에 호출됩니다.         
+            RegistrationOrder.HYBRID_MOD_BUKKIT,
+            // 호출 플랫폼을 수동으로 지정합니다.
+            // 지정된 플랫폼 API에 따라 클래스 로더 서포트가 달라집니다.
+            // 반드시 올바른 플랫폼을 지정하세요.
+            RegistrationOrder.FORGE,
+            api -> {
+                // private 메서드라도 @EventTransaction 어노테이션이 있다면 등록됩니다.
+                // 사용할 대상 플랫폼의 API를 사용하지 않으면 클래스로더 혼용 문제로 오류가 발생합니다.
+                // 이 예제는 플러그인의 커먼 API를 사용했다는 가정 하에 작성되었습니다. 
+                api.registerListener(new EventTransactionExample());
+            });
     }
 }
 ```
@@ -206,17 +267,16 @@ public class EventTransactionExampleMod {
 특정 플랫폼에 귀속되는 코드는 `platform`과 같은 모듈로 분리하여 제공된 모듈만 퍼블리싱하는 것이 권장됩니다.
 
 ### 유틸리티 클래스에 대한 이해
+
 EventTransactionLib의 유틸리티는 각 플랫폼에 귀속된 유틸리티 클래스입니다.
 
 특정 플랫폼에 귀속된 데이터 클래스를 플러그인과 모드의 통신을 위해 커먼에 포함된 클래스로 변환하거나,
 
 그 역의 과정을 진행합니다.
 
-어떠한 유틸리티 클래스던 간에 `EventTransactionUtil` 클래스명을 가지고 있으며, 
+어떠한 유틸리티 클래스던 간에 `EventTransactionUtil` 클래스명을 가지고 있으며,
 
 플랫폼 라이브러리가 추가되지 않으면 사용할 수 없습니다.
-
-
 
 ## 로고 이미지 출처
 
