@@ -224,13 +224,10 @@ public abstract class EventTransactionApiImpl implements EventTransactionApi {
 		}
 
 		public Object invokeEvent(Object event) {
-			System.out.println("[EventTransactionLib] Reassembling " + origin.getName() + " with " + consumers.size() + " consumers.");
 			Object target = reassemble(event);
-			System.out.println("[EventTransactionLib] Invoking " + origin.getName() + " with " + consumers.size() + " consumers.");
 			for (Consumer<Object> consumer : consumers) {
 				consumer.accept(target);
 			}
-			System.out.println("[EventTransactionLib] Deassembling " + origin.getName() + " with " + consumers.size() + " consumers.");
 			return deassemble(target, event.getClass());
 		}
 
