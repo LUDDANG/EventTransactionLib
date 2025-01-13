@@ -66,11 +66,11 @@ repositories {
 }
 
 dependencies {
-    compileOnly("live.luya:eventtransactionlib-common:1.1.0")
+    compileOnly("live.luya:eventtransactionlib-common:1.3.0")
     // Bukkit API를 사용하는 경우 주석을 해제하세요,
-//    compileOnly("live.luya:eventtransactionlib-bukkit:1.1.0")
+//    compileOnly("live.luya:eventtransactionlib-bukkit:1.3.0")
     // Forge API를 사용하는 경우 주석을 해제하세요,
-//    compileOnly("live.luya:eventtransactionlib-forge:1.1.0")
+//    compileOnly("live.luya:eventtransactionlib-forge:1.3.0")
 }
 ```
 <br/>
@@ -97,7 +97,7 @@ Maven은 compile 스코프를 통해 패키징에 포함됨을 방지합니다.
     <dependency>
         <groupId>live.luya</groupId>
         <artifactId>eventtransactionlib-common</artifactId>
-        <version>1.1.0</version>
+        <version>1.3.0</version>
     </dependency>
 <!-- Bukkit API를 사용하는 경우 주석을 해제하세요 -->
 <!--    <dependency>-->
@@ -147,7 +147,7 @@ mandatory = true
 # 만약 1.0 버전 이상 모든 버전을 지정하려 한다면, "[1.0,)"으로 설정해야 합니다.
 # 버전 규칙에 대한 상세한 정보는 다음 링크의 메이븐 버전 포맷을 참고하세요.
 # https://cwiki.apache.org/confluence/display/MAVENOLD/Dependency+Mediation+and+Conflict+Resolution#DependencyMediationandConflictResolution-DependencyVersionRanges
-versionRange = "[1.0]"
+versionRange = "[1.3]"
 ordering = "NONE"
 side = "SERVER"
 ```
