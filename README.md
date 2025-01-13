@@ -187,11 +187,13 @@ public class EventTransactionExampleMod {
         // HYBRID_MOD_BUKKIT은 플러그인과 모드를 동시에 지원하는 버킷을 의미합니다.
         // FORGE 혹은 FABRIC의 초기화가 진행되고, PLUGIN의 초기화가 진행된 이후에 호출됩니다.         
         RegistrationOrder.HYBRID_MOD_BUKKIT, 
+        // Bukkit의 Plugin API에서 로드된 클래스로더를 통해 사용합니다. 
+		RegistrationOrder.BUKKIT,
         api -> {
             // private 메서드라도 @EventTransaction 어노테이션이 있다면 등록됩니다.
             // 사용할 대상 플랫폼의 API를 사용하지 않으면 클래스로더 혼용 문제로 오류가 발생합니다.
             // 이 예제는 플러그인의 커먼 API를 사용했다는 가정 하에 작성되었습니다. 
-            RegistrationOrder.BUKKIT.getPlatformApi().registerListener(new EventTransactionExample());	
+            api.registerListener(new EventTransactionExample());	
         });
     }
 }
