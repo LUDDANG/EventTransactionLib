@@ -37,7 +37,7 @@ public class PurePluginClassLoader extends URLClassLoader {
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
-		}).toArray(URL[]::new), ClassLoader.getSystemClassLoader());
+		}).toArray(URL[]::new), parent);
 		this.pluginData = files;
 	}
 
@@ -114,9 +114,9 @@ public class PurePluginClassLoader extends URLClassLoader {
 
 	@Override
 	protected Class<?> findClass(String name) throws ClassNotFoundException {
-		if (name.startsWith("org.bukkit.") || name.startsWith("net.minecraft.")) {
-			throw new ClassNotFoundException(name);
-		}
+//		if (name.startsWith("org.bukkit.") || name.startsWith("net.minecraft.")) {
+//			throw new ClassNotFoundException(name);
+//		}
 		Class<?> result = classes.get(name);
 
 		if (result == null) {

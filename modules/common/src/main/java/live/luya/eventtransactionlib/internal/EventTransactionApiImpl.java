@@ -6,6 +6,7 @@ import live.luya.eventtransactionlib.RegistrationOrder;
 import live.luya.eventtransactionlib.UnregisterHandler;
 import live.luya.eventtransactionlib.annotation.EventTransaction;
 import live.luya.eventtransactionlib.annotation.TransactionExclude;
+import lombok.Getter;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -24,6 +25,7 @@ public abstract class EventTransactionApiImpl implements EventTransactionApi {
 
 	private Supplier<Set<RegistrationOrder>> orderProvider = null;
 
+	@Getter
 	private Supplier<List<ClassLoader>> classLoaderSupplier;
 
 	@Override
@@ -38,6 +40,7 @@ public abstract class EventTransactionApiImpl implements EventTransactionApi {
 
 	@Override
 	public <T> UnregisterHandler registerListener(Class<T> eventClass, Consumer<T> listener) {
+		System.out.println("[EventTransactionLib] Registering listener for " + eventClass.getName());
 		return new UnregisterHandler(eventConsumer.computeIfAbsent(eventClass.getName(), k -> new RegisteredClassData(eventClass))
 				.addConsumer((Consumer<Object>) listener));
 	}
@@ -100,6 +103,8 @@ public abstract class EventTransactionApiImpl implements EventTransactionApi {
 
 	@Override
 	public <T> T triggerHandler(T event) {
+		System.out.println("[EventTransactionLib] Triggering event: " + event.getClass().getName());
+		System.out.println("EventConsumer: " + eventConsumer);
 		if (eventConsumer.containsKey(event.getClass().getName())) {
 			return (T) eventConsumer.get(event.getClass().getName()).invokeEvent(event);
 		}
@@ -224,11 +229,12 @@ public abstract class EventTransactionApiImpl implements EventTransactionApi {
 		}
 
 		public Object invokeEvent(Object event) {
-			Object target = reassemble(event);
+//			Object target = reassemble(event);
 			for (Consumer<Object> consumer : consumers) {
-				consumer.accept(target);
+				consumer.accept(event);
 			}
-			return deassemble(target, event.getClass());
+//			return deassemble(target, event.getClass());
+			return event;
 		}
 
 		@Override

@@ -24,7 +24,7 @@ public interface EventTransactionApi {
 
 	/**
 	 * Unregister listener.
-	 * Does not work with envor
+	 * Does not work with environment handler.
 	 *
 	 * @param handler Handler object.
 	 */
@@ -81,5 +81,5 @@ public interface EventTransactionApi {
 
 	void detachExternalClassLoaders(List<ClassLoader> loaders);
 
-	ClassLoader getPlatformClassLoader();
+	List<ClassLoader> getPlatformClassLoader();
 }

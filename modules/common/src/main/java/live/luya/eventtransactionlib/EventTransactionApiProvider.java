@@ -1,9 +1,6 @@
 package live.luya.eventtransactionlib;
 
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class EventTransactionApiProvider {
 	private static final Map<RegistrationOrder, EventTransactionApi> apiMap = new HashMap<>();
@@ -21,7 +18,7 @@ public class EventTransactionApiProvider {
 
 	public static void appendApi(RegistrationOrder order, EventTransactionApi api) {
 		api.registerOrderProvider(() -> currentOrder);
-		api.registerClassLoaderProvider(() -> apiMap.values().stream().map(EventTransactionApi::getPlatformClassLoader).toList());
+		api.registerClassLoaderProvider(() -> apiMap.values().stream().map(EventTransactionApi::getPlatformClassLoader).flatMap(Collection::stream).toList());
 		apiMap.put(order, api);
 	}
 
@@ -31,5 +28,9 @@ public class EventTransactionApiProvider {
 		for (EventTransactionApi api : apiMap.values()) {
 			api.onOrderStacked();
 		}
+	}
+
+	public static void triggerHandler(Object object) {
+		getApi().triggerHandler(object);
 	}
 }

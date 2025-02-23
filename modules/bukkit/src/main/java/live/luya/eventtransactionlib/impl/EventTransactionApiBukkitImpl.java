@@ -3,16 +3,14 @@ package live.luya.eventtransactionlib.impl;
 import live.luya.eventtransactionlib.EventTransactionListener;
 import live.luya.eventtransactionlib.UnregisterHandler;
 import live.luya.eventtransactionlib.internal.EventTransactionApiImpl;
-import org.bukkit.Bukkit;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class EventTransactionApiBukkitImpl extends EventTransactionApiImpl {
 
-	private final ClassLoader platformLoader;
+	private final List<ClassLoader> platformLoader;
 
-	public EventTransactionApiBukkitImpl(ClassLoader loader) {
+	public EventTransactionApiBukkitImpl(List<ClassLoader> loader) {
 		this.platformLoader = loader;
 	}
 
@@ -33,7 +31,7 @@ public class EventTransactionApiBukkitImpl extends EventTransactionApiImpl {
 	}
 
 	@Override
-	public ClassLoader getPlatformClassLoader() {
+	public List<ClassLoader> getPlatformClassLoader() {
 		return platformLoader;
 	}
 }
