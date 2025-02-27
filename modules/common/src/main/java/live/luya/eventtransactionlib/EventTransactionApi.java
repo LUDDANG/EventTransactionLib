@@ -63,12 +63,14 @@ public interface EventTransactionApi {
 
 
 	/**
+	 * ** DEPRECATED ** Platform api is deprecated - now supporting fully-compatible mod sided classloader.
 	 * Prepare registration until requested order is matched.
 	 *
 	 * @param order          Registration order
 	 * @param targetPlatform Target platform
 	 * @param apiConsumer    API consumer
 	 */
+	@Deprecated
 	void prepareRegistration(RegistrationOrder order, RegistrationOrder targetPlatform, Consumer<EventTransactionApi> apiConsumer);
 
 	void registerOrderProvider(Supplier<Set<RegistrationOrder>> provider);

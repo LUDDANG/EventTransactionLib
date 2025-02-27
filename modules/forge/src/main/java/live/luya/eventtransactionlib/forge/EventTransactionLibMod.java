@@ -19,7 +19,6 @@ public class EventTransactionLibMod {
 		EventTransactionApiProvider.getApi()
 				.prepareRegistration(RegistrationOrder.HYBRID_MOD_BUKKIT, RegistrationOrder.FORGE, (api) -> {
 					impl.attachExternalClassLoaders(impl.getClassLoaderSupplier().get());
-					impl.doDebug();
 				});
 	}
 

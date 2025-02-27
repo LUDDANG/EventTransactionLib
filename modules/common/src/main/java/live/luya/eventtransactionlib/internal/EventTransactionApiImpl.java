@@ -126,6 +126,7 @@ public abstract class EventTransactionApiImpl implements EventTransactionApi {
 	}
 
 	@Override
+	@Deprecated
 	public void prepareRegistration(RegistrationOrder order, RegistrationOrder targetPlatform, Consumer<EventTransactionApi> apiConsumer) {
 		if (order.doesPassed(orderProvider.get())) {
 			apiConsumer.accept(targetPlatform.getPlatformApi());

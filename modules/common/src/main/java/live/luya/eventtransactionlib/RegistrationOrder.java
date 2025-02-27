@@ -23,6 +23,7 @@ public enum RegistrationOrder {
 		this(List.of(), Set.of());
 	}
 
+	@Deprecated
 	public EventTransactionApi getPlatformApi() {
 		EventTransactionApi api = EventTransactionApiProvider.getApi(this);
 		if (api == null) {

@@ -37,7 +37,6 @@ public class EventTransactionApiForgeImpl extends EventTransactionApiImpl {
 	public EventTransactionApiForgeImpl() {
 		forgeLoader = (SecureModuleClassLoader) findSecureModuleClassLoader();
 		classLoaderList = extractClassLoaderFieldFrom(forgeLoader);
-		System.out.println("ForgeLoader: " + classLoaderList);
 		try {
 			ourModules = (Map<String, ModuleReference>) ForgeReflectionUtil.findObfuscatedField(SecureModuleClassLoader.class, "ourModules")
 					.get(forgeLoader);
