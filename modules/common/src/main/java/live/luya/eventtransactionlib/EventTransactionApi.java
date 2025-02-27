@@ -55,10 +55,7 @@ public interface EventTransactionApi {
 	 *
 	 * @param order       Registration order
 	 * @param apiConsumer API consumer
-	 *                    -- Deprecated --
-	 *                    Use {@link #prepareRegistration(RegistrationOrder, RegistrationOrder, Consumer)} instead.
 	 */
-	@Deprecated
 	void prepareRegistration(RegistrationOrder order, Consumer<EventTransactionApi> apiConsumer);
 
 

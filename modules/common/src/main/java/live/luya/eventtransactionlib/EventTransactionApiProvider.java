@@ -1,6 +1,7 @@
 package live.luya.eventtransactionlib;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 public class EventTransactionApiProvider {
 	private static final Map<RegistrationOrder, EventTransactionApi> apiMap = new HashMap<>();
@@ -32,5 +33,9 @@ public class EventTransactionApiProvider {
 
 	public static void triggerHandler(Object object) {
 		getApi().triggerHandler(object);
+	}
+
+	public static void prepareRegistration(RegistrationOrder order, Consumer<EventTransactionApi> apiConsumer) {
+		getApi().prepareRegistration(order, apiConsumer);
 	}
 }
