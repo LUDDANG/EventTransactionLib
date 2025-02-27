@@ -21,7 +21,6 @@ public class OverwrittenPluginClassLoader extends ClassLoader {
 
 	@Override
 	protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-		System.out.println("LoadClass called - Scanning " + origin.size() + " classes");
 		for (ClassLoader loader : origin) {
 			try {
 				return (Class<?>) findClassMethod.invoke(loader, name);

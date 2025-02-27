@@ -103,8 +103,6 @@ public abstract class EventTransactionApiImpl implements EventTransactionApi {
 
 	@Override
 	public <T> T triggerHandler(T event) {
-		System.out.println("[EventTransactionLib] Triggering event: " + event.getClass().getName());
-		System.out.println("EventConsumer: " + eventConsumer);
 		if (eventConsumer.containsKey(event.getClass().getName())) {
 			return (T) eventConsumer.get(event.getClass().getName()).invokeEvent(event);
 		}
