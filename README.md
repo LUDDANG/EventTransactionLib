@@ -3,9 +3,11 @@
 </p>
 
 ## 다운로드
+### 버전 코드는 대형 변경이 있을 때마다 변경됩니다.
 
 | 버전 코드      | 버전                                                                         | 주요 기능                 |
 |------------|----------------------------------------------------------------------------|-----------------------|
+| Blacksmith | [1.7.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.7.0) | 트랜잭션 기반 추가            |
 | Blacksmith | [1.6.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.6.0) | 편의성 메서드 추가            |
 | Blacksmith | 1.5.0                                                                      | 포지 사이드 클래스로드 충돌 문제 해결 |
 | Liberation | 1.4.1                                                                      | 플랫폼 API 오류 수정         |
