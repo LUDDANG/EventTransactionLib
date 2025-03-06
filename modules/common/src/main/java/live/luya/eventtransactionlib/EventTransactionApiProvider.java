@@ -8,9 +8,11 @@ public class EventTransactionApiProvider {
 
 	private static final Set<RegistrationOrder> currentOrder = new LinkedHashSet<>();
 
+	private static EventTransactionApi lastApi;
+
 
 	public static EventTransactionApi getApi() {
-		return apiMap.values().stream().findFirst().orElse(null);
+		return lastApi;
 	}
 
 	public static EventTransactionApi getApi(RegistrationOrder order) {
@@ -21,6 +23,8 @@ public class EventTransactionApiProvider {
 		api.registerOrderProvider(() -> currentOrder);
 		api.registerClassLoaderProvider(() -> apiMap.values().stream().map(EventTransactionApi::getPlatformClassLoader).flatMap(Collection::stream).toList());
 		apiMap.put(order, api);
+		if (lastApi == null)
+			lastApi = api;
 	}
 
 	@Deprecated
