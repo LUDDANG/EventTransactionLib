@@ -18,6 +18,14 @@ public class EventTransactionUtil {
 		return new EventBlockPosition(world, pos.getX(), pos.getY(), pos.getZ());
 	}
 
+	public static EventBlockPosition asWorldlessBlockPosition(Vec3 pos) {
+		return new EventBlockPosition("", (int) pos.x, (int) pos.y, (int) pos.z);
+	}
+
+	public static EventPosition asWorldlessPosition(Vec3 pos) {
+		return new EventPosition("", pos.x, pos.y, pos.z);
+	}
+
 	public static Vec3 asVec3(EventPosition pos) {
 		return new Vec3(pos.getX(), pos.getY(), pos.getZ());
 	}

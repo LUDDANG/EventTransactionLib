@@ -19,4 +19,8 @@ public class EventBlockPosition {
 	public EventPosition asPosition() {
 		return new EventPosition(world, x, y, z);
 	}
+
+	public boolean isWorldless() {
+		return world.isEmpty();
+	}
 }
