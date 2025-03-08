@@ -7,6 +7,7 @@
 
 | 버전 코드      | 버전                                                                         | 주요 기능                 |
 |------------|----------------------------------------------------------------------------|-----------------------|
+| Blacksmith | [1.8.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.8.0) | 유틸리티 메서드 추가           |
 | Blacksmith | [1.7.1](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.7.1) | 오류 수정                 |
 | Blacksmith | [1.7.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.7.0) | 트랜잭션 기반 추가            |
 | Blacksmith | [1.6.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.6.0) | 편의성 메서드 추가            |
@@ -85,11 +86,11 @@ repositories {
 }
 
 dependencies {
-    compileOnly("live.luya:eventtransactionlib-common:1.7.1")
+    compileOnly("live.luya:eventtransactionlib-common:1.8.0")
     // Bukkit API를 사용하는 경우 주석을 해제하세요,
-//    compileOnly("live.luya:eventtransactionlib-bukkit:1.7.1")
+//    compileOnly("live.luya:eventtransactionlib-bukkit:1.8.0")
     // Forge API를 사용하는 경우 주석을 해제하세요,
-//    compileOnly("live.luya:eventtransactionlib-forge:1.7.1")
+//    compileOnly("live.luya:eventtransactionlib-forge:1.8.0")
 }
 ```
 
@@ -118,19 +119,19 @@ Maven은 compile 스코프를 통해 패키징에 포함됨을 방지합니다.
 <dependency>
     <groupId>live.luya</groupId>
     <artifactId>eventtransactionlib-common</artifactId>
-    <version>1.7.1</version>
+    <version>1.8.0</version>
 </dependency>
 <!-- Bukkit API를 사용하는 경우 주석을 해제하세요 -->
 <!--    <dependency>-->
 <!--        <groupId>live.luya</groupId>-->
 <!--        <artifactId>eventtransactionlib-bukkit</artifactId>-->
-<!--        <version>1.7.1</version>-->
+<!--        <version>1.8.0</version>-->
 <!--    </dependency>-->
 <!-- Forge API를 사용하는 경우 주석을 해제하세요-->
 <!--    <dependency>-->
 <!--        <groupId>live.luya</groupId>-->
 <!--        <artifactId>eventtransactionlib-forge</artifactId>-->
-<!--        <version>1.7.1</version>-->
+<!--        <version>1.8.0</version>-->
 <!--    </dependency>-->
 <!-- ... -->
 </dependencies>
