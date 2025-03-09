@@ -53,11 +53,6 @@ public abstract class EventTransactionApiImpl implements EventTransactionApi {
 		for (Method method : listener.getClass().getDeclaredMethods()) {
 			if (method.getAnnotation(EventTransaction.class) != null) {
 				if (method.getParameterCount() == 1) {
-					if (getTransactionIncompatibleCause(method.getParameterTypes()[0]) != null) {
-						System.err.println("[EventTransactionLib] Cannot register listener " + listener.getClass()
-								.getName() + " with event: " + method.getParameterTypes()[0].getName() + "(" + getTransactionIncompatibleCause(method.getParameterTypes()[0]) + ")");
-						continue;
-					}
 					method.setAccessible(true);
 					handlers.add(registerListener(method.getParameterTypes()[0], event -> {
 						try {
