@@ -7,6 +7,7 @@
 
 | 버전 코드      | 버전                                                                         | 주요 기능                 |
 |------------|----------------------------------------------------------------------------|-----------------------|
+| Blacksmith | [1.8.1](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.8.1) | 오류 수정                 |
 | Blacksmith | [1.8.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.8.0) | 유틸리티 메서드 추가           |
 | Blacksmith | [1.7.1](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.7.1) | 오류 수정                 |
 | Blacksmith | [1.7.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.7.0) | 트랜잭션 기반 추가            |
@@ -86,11 +87,11 @@ repositories {
 }
 
 dependencies {
-    compileOnly("live.luya:eventtransactionlib-common:1.8.0")
+    compileOnly("live.luya:eventtransactionlib-common:1.8.1")
     // Bukkit API를 사용하는 경우 주석을 해제하세요,
-//    compileOnly("live.luya:eventtransactionlib-bukkit:1.8.0")
+//    compileOnly("live.luya:eventtransactionlib-bukkit:1.8.1")
     // Forge API를 사용하는 경우 주석을 해제하세요,
-//    compileOnly("live.luya:eventtransactionlib-forge:1.8.0")
+//    compileOnly("live.luya:eventtransactionlib-forge:1.8.1")
 }
 ```
 
@@ -119,19 +120,19 @@ Maven은 compile 스코프를 통해 패키징에 포함됨을 방지합니다.
 <dependency>
     <groupId>live.luya</groupId>
     <artifactId>eventtransactionlib-common</artifactId>
-    <version>1.8.0</version>
+    <version>1.8.1</version>
 </dependency>
 <!-- Bukkit API를 사용하는 경우 주석을 해제하세요 -->
 <!--    <dependency>-->
 <!--        <groupId>live.luya</groupId>-->
 <!--        <artifactId>eventtransactionlib-bukkit</artifactId>-->
-<!--        <version>1.8.0</version>-->
+<!--        <version>1.8.1</version>-->
 <!--    </dependency>-->
 <!-- Forge API를 사용하는 경우 주석을 해제하세요-->
 <!--    <dependency>-->
 <!--        <groupId>live.luya</groupId>-->
 <!--        <artifactId>eventtransactionlib-forge</artifactId>-->
-<!--        <version>1.8.0</version>-->
+<!--        <version>1.8.1</version>-->
 <!--    </dependency>-->
 <!-- ... -->
 </dependencies>
@@ -162,12 +163,12 @@ EventTransactionLib은 클라이언트 사이드 모드가 아닙니다.
 modId = "event_transaction_lib"
 # 필수 디펜던시입니다.
 mandatory = true
-# 1.0.x의 버전만 사용 가능하도록 지정합니다.
+# 1.8.x의 버전만 사용 가능하도록 지정합니다.
 # 문법은 마이너 버전마다 다를 수 있음으로, 와일드카드 버전은 권장되지 않습니다.
 # 만약 1.0 버전 이상 모든 버전을 지정하려 한다면, "[1.0,)"으로 설정해야 합니다.
 # 버전 규칙에 대한 상세한 정보는 다음 링크의 메이븐 버전 포맷을 참고하세요.
 # https://cwiki.apache.org/confluence/display/MAVENOLD/Dependency+Mediation+and+Conflict+Resolution#DependencyMediationandConflictResolution-DependencyVersionRanges
-versionRange = "[1.6]"
+versionRange = "[1.8]"
 ordering = "NONE"
 side = "SERVER"
 ```
