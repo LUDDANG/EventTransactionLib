@@ -42,7 +42,10 @@ public class EventTransactionPlugin extends JavaPlugin {
 				).map(
 						it -> extract(it, classLoaderExtractor)
 				).toList();
-
+				if (loaders.isEmpty()) {
+					System.out.println("[EventTransaction] No other plugins found, skipping classloader registration.");
+					return;
+				}
 				EventTransactionApiProvider.appendApi(RegistrationOrder.BUKKIT, new EventTransactionApiBukkitImpl(
 						List.of(
 								new OverwrittenPluginClassLoader(loaders)
