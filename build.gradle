@@ -8,7 +8,7 @@ plugins {
 //                Dependency / Repositories
 // =========================================================
 
-sourceCompatibility = targetCompatibility = "17"
+sourceCompatibility = targetCompatibility = "21"
 
 repositories {
     mavenCentral()
@@ -43,7 +43,7 @@ subprojects {
     apply plugin: 'com.github.johnrengelman.shadow'
     apply plugin: 'maven-publish'
 
-    sourceCompatibility = targetCompatibility = "17"
+    sourceCompatibility = targetCompatibility = "21"
 
     repositories {
         mavenCentral()

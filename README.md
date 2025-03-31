@@ -70,8 +70,8 @@ Gradle은 compileOnly를 통한 바이너리 포함을 회피하는 형태로 �
 다음 구문을 참고하여 반영하세요 :
 
 ```groovy
-// 자바 17 이상이 필요합니다.
-sourceCompatibility = targetCompatibility = "17"
+// 자바 21 이상이 필요합니다.
+sourceCompatibility = targetCompatibility = "21"
 
 // ...
 repositories {
