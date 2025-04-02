@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "live.luya.eventtransactionlib.neoforge.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ModuleClassLoaderMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
