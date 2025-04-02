@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "event_transaction_lib",
+  "version": "${version}",
+  "name": "EventTransactionLib Fabric",
+  "description": "EventTransactionLib Fabric plugin compatibility layer",
+  "authors": [
+    "Oarsman-Nemo"
+  ],
+  "environment": "*",
+  "entrypoints": {
+    "server": [
+      "live.luya.eventtransactionlib.fabric.EventTransactionLibMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.10",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
