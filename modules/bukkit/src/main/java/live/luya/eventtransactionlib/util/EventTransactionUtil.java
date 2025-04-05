@@ -10,15 +10,16 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class EventTransactionUtil {
 	public static EventBlockPosition asBlockPosition(World w, int x, int y, int z) {
-		return new EventBlockPosition(w.getName(), x, y, z);
+		return new EventBlockPosition(w.getKey().toString(), x, y, z);
 	}
 
 	public static EventPosition asPosition(World w, double x, double y, double z) {
-		return new EventPosition(w.getName(), x, y, z);
+		return new EventPosition(w.getKey().toString(), x, y, z);
 	}
 
 	public static EventPosition asWorldlessPosition(double x, double y, double z) {
@@ -29,12 +30,20 @@ public class EventTransactionUtil {
 		return new EventBlockPosition("", x, y, z);
 	}
 
+	public static EventBlockPosition asBlockPosition(Location loc) {
+		return new EventBlockPosition(loc.getWorld().getKey().toString(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
+	}
+
+	public static EventPosition asPosition(Location loc) {
+		return new EventPosition(loc.getWorld().getKey().toString(), loc.getX(), loc.getY(), loc.getZ());
+	}
+
 	public static Location toLocation(EventPosition pos) {
-		return new Location(Bukkit.getWorld(pos.getWorld()), pos.getX(), pos.getY(), pos.getZ());
+		return new Location(BukkitWorldUtil.findWorldBy(pos.getWorld()), pos.getX(), pos.getY(), pos.getZ());
 	}
 
 	public static Location toLocation(EventBlockPosition pos) {
-		return new Location(Bukkit.getWorld(pos.getWorld()), pos.getX(), pos.getY(), pos.getZ());
+		return new Location(BukkitWorldUtil.findWorldBy(pos.getWorld()), pos.getX(), pos.getY(), pos.getZ());
 	}
 
 	public static Location toLocation(World w, EventPosition pos) {
@@ -54,6 +63,8 @@ public class EventTransactionUtil {
 	}
 
 	public static Block getBlock(EventBlockPosition pos) {
-		return Bukkit.getWorld(pos.getWorld()).getBlockAt(pos.getX(), pos.getY(), pos.getZ());
+		return Objects.requireNonNull(
+				BukkitWorldUtil.findWorldBy(pos.getWorld())
+		).getBlockAt(pos.getX(), pos.getY(), pos.getZ());
 	}
 }

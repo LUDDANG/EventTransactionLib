@@ -3,6 +3,7 @@ package live.luya.eventtransactionlib.forge.util;
 import live.luya.eventtransactionlib.data.EventBlockPosition;
 import live.luya.eventtransactionlib.data.EventPosition;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class EventTransactionUtil {
@@ -16,6 +17,10 @@ public class EventTransactionUtil {
 
 	public static EventBlockPosition asBlockPosition(String world, BlockPos pos) {
 		return new EventBlockPosition(world, pos.getX(), pos.getY(), pos.getZ());
+	}
+
+	public static EventBlockPosition asBlockPosition(Level level, BlockPos pos) {
+		return asBlockPosition(level.dimension().toString(), pos);
 	}
 
 	public static EventBlockPosition asWorldlessBlockPosition(Vec3 pos) {

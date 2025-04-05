@@ -13,7 +13,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class EventTransactionPlugin extends JavaPlugin {
 	private PurePluginClassLoader pureClassLoader;
@@ -53,9 +52,6 @@ public class EventTransactionPlugin extends JavaPlugin {
 		} catch (NoSuchMethodException e) {
 			throw new RuntimeException(e);
 		}
-
-
-
 	}
 
 	public static ClassLoader extract(Plugin p, Method mtd) {
