@@ -103,4 +103,6 @@ shadowJar {
     archiveClassifier = ''
     archiveBaseName.set("EventTransactionLib-Fabric")
     configurations = [project.configurations.shade]
+    dependsOn remapJar
+    from zipTree(remapJar.archiveFile)
 }
