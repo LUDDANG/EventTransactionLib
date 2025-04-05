@@ -7,6 +7,7 @@
 
 | 버전 코드      | 버전                                                                                         | 주요 기능                  |
 |------------|--------------------------------------------------------------------------------------------|------------------------|
+| Antidote   | [1.10.0-1.21.1](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.10.0-1.21.1) | 모드-플러그인 키 기반 월드 API 추가 |
 | Antidote   | [1.10.0-1.20.4](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.10.0-1.20.4) | 모드-플러그인 키 기반 월드 API 추가 |
 | Antidote   | [1.9.0-1.21.1](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.9.0-1.21.1)   | 1.21.1 지원 추가           |
 | Blacksmith | [1.8.1](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.8.1)                 | 오류 수정                  |
