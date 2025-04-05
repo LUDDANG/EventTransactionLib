@@ -11,9 +11,6 @@ repositories {
     maven {
         url "https://repo.trinarywolf.net/spigot/"
     }
-    maven {
-        url "https://repo.trinarywolf.net/luddang/"
-    }
 }
 
 jar {

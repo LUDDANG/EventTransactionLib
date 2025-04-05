@@ -231,7 +231,7 @@ publishing {
     repositories {
         maven {
             name = "Reposilite"
-            url("https://repo.trinarywolf.net/luddang")
+            url("https://repo.trinarywolf.net/releases")
             credentials {
                 username(rootProject.properties['reposilite.user'] as String)
                 password(rootProject.properties['reposilite.token'] as String)
