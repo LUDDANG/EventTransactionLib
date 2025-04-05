@@ -14,7 +14,6 @@ public class EventTransactionLibMod {
 		EventTransactionApiForgeImpl impl = new EventTransactionApiForgeImpl();
 		EventTransactionApiProvider.appendApi(RegistrationOrder.FORGE, impl);
 		EventTransactionApiProvider.stackRegistrationOrder(RegistrationOrder.FORGE);
-
 		System.out.println("EventTransactionLib has been registered.");
 		EventTransactionApiProvider.getApi()
 				.prepareRegistration(RegistrationOrder.HYBRID_MOD_BUKKIT, RegistrationOrder.FORGE, (api) -> {
