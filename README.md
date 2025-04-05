@@ -77,13 +77,7 @@ sourceCompatibility = targetCompatibility = "17"
 // ...
 repositories {
     maven {
-        url "https://repo.trinarywolf.net/luddang"
-        credentials {
-            // 지급받은 ID를 입력하세요.
-            username "ID_PROVIDED"
-            // 지급받은 토큰을 입력하세요.
-            password "TOKEN_PROVIDED"
-        }
+        url "https://repo.trinarywolf.net/releases"
     }
 }
 
@@ -111,7 +105,7 @@ Maven은 compile 스코프를 통해 패키징에 포함됨을 방지합니다.
     <repository>
         <id>trinarywolf-luddang</id>
         <name>Trinarywolf Luddang Repository</name>
-        <url>https://repo.trinarywolf.net/luddang</url>
+        <url>https://repo.trinarywolf.net/releases</url>
     </repository>
     <!-- ... -->
 </repositories>
