@@ -5,23 +5,24 @@
 ## 다운로드
 ### 버전 코드는 대형 변경이 있을 때마다 변경됩니다.
 
-| 버전 코드      | 버전                                                                                        | 주요 기능                  |
-|------------|-------------------------------------------------------------------------------------------|------------------------|
-| Antidote   | [1.9.0-1.20.4](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.10.0-1.20.4) | 모드-플러그인 키 기반 월드 API 추가 |
-| Antidote   | [1.9.0-1.21.1](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.9.0-1.21.1)  | 1.21.1 지원 추가           |
-| Blacksmith | [1.8.1](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.8.1)                | 오류 수정                  |
-| Blacksmith | [1.8.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.8.0)                | 유틸리티 메서드 추가            |
-| Blacksmith | [1.7.1](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.7.1)                | 오류 수정                  |
-| Blacksmith | [1.7.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.7.0)                | 트랜잭션 기반 추가             |
-| Blacksmith | [1.6.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.6.0)                | 편의성 메서드 추가             |
-| Blacksmith | 1.5.0                                                                                     | 포지 사이드 클래스로드 충돌 문제 해결  |
-| Liberation | 1.4.1                                                                                     | 플랫폼 API 오류 수정          |
-| Liberation | [1.4.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.4.0)                | 데이터 클래스 재구축 기능 추가      |
-|            | [1.3.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.3.0)                | 플랫폼 귀속 API 추가          |
-|            | [1.2.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.2.0)                | 등록 대기 API 추가           |
-|            | [1.1.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.1.0)                | 플랫폼 유틸리티 추가            |
-|            | [1.0.1](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.0.1)                | 오류 수정                  |
-|            | [1.0.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.0.0)                | 프로젝트 기초                |
+| 버전 코드      | 버전                                                                                         | 주요 기능                  |
+|------------|--------------------------------------------------------------------------------------------|------------------------|
+| Antidote   | [1.10.0-1.21.1](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.10.0-1.21.1) | 모드-플러그인 키 기반 월드 API 추가 |
+| Antidote   | [1.10.0-1.20.4](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.10.0-1.20.4) | 모드-플러그인 키 기반 월드 API 추가 |
+| Antidote   | [1.9.0-1.21.1](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.9.0-1.21.1)   | 1.21.1 지원 추가           |
+| Blacksmith | [1.8.1](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.8.1)                 | 오류 수정                  |
+| Blacksmith | [1.8.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.8.0)                 | 유틸리티 메서드 추가            |
+| Blacksmith | [1.7.1](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.7.1)                 | 오류 수정                  |
+| Blacksmith | [1.7.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.7.0)                 | 트랜잭션 기반 추가             |
+| Blacksmith | [1.6.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.6.0)                 | 편의성 메서드 추가             |
+| Blacksmith | 1.5.0                                                                                      | 포지 사이드 클래스로드 충돌 문제 해결  |
+| Liberation | 1.4.1                                                                                      | 플랫폼 API 오류 수정          |
+| Liberation | [1.4.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.4.0)                 | 데이터 클래스 재구축 기능 추가      |
+|            | [1.3.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.3.0)                 | 플랫폼 귀속 API 추가          |
+|            | [1.2.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.2.0)                 | 등록 대기 API 추가           |
+|            | [1.1.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.1.0)                 | 플랫폼 유틸리티 추가            |
+|            | [1.0.1](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.0.1)                 | 오류 수정                  |
+|            | [1.0.0](https://github.com/LUDDANG/EventTransactionLib/releases/tag/1.0.0)                 | 프로젝트 기초                |
 
 ## 개요
 
@@ -89,11 +90,11 @@ repositories {
 }
 
 dependencies {
-    compileOnly("live.luya:eventtransactionlib-common:1.9.0-1.20.4")
+    compileOnly("live.luya:eventtransactionlib-common:1.10.0-1.21.1")
     // Bukkit API를 사용하는 경우 주석을 해제하세요,
-//    compileOnly("live.luya:eventtransactionlib-bukkit:1.9.0-1.20.4")
+//    compileOnly("live.luya:eventtransactionlib-bukkit:1.10.0-1.21.1")
     // Forge API를 사용하는 경우 주석을 해제하세요,
-//    compileOnly("live.luya:eventtransactionlib-forge:1.9.0-1.20.4")
+//    compileOnly("live.luya:eventtransactionlib-forge:1.10.0-1.21.1")
 }
 ```
 
@@ -128,13 +129,13 @@ Maven은 compile 스코프를 통해 패키징에 포함됨을 방지합니다.
 <!--    <dependency>-->
 <!--        <groupId>live.luya</groupId>-->
 <!--        <artifactId>eventtransactionlib-bukkit</artifactId>-->
-<!--        <version>1.9.0-1.20.4</version>-->
+<!--        <version>1.10.0-1.21.1</version>-->
 <!--    </dependency>-->
 <!-- Forge API를 사용하는 경우 주석을 해제하세요-->
 <!--    <dependency>-->
 <!--        <groupId>live.luya</groupId>-->
 <!--        <artifactId>eventtransactionlib-forge</artifactId>-->
-<!--        <version>1.9.0-1.20.4</version>-->
+<!--        <version>1.10.0-1.21.1</version>-->
 <!--    </dependency>-->
 <!-- ... -->
 </dependencies>
