@@ -1,5 +1,4 @@
 plugins {
-
     id 'fabric-loom'
     id 'maven-publish'
     id 'com.github.johnrengelman.shadow'
@@ -74,35 +73,40 @@ java {
 }
 
 jar {
+    archiveClassifier = 'slim'
     inputs.property "archivesName", project.base.archivesName
 
     from("LICENSE") {
-        rename { "${it}_${inputs.properties.archivesName}"}
-    }
-}
-
-// configure the maven publication
-publishing {
-    publications {
-        create("mavenJava", MavenPublication) {
-            artifactId = project.archives_base_name
-            from components.java
-        }
-    }
-
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-    repositories {
-        // Add repositories to publish to here.
-        // Notice: This block does NOT have the same function as the block in the top level.
-        // The repositories here will be used for publishing your artifact, not for
-        // retrieving dependencies.
+        rename { "${it}_${inputs.properties.archivesName}" }
     }
 }
 
 shadowJar {
-    archiveClassifier = ''
+    archiveClassifier = 'Runtime'
     archiveBaseName.set("EventTransactionLib-Fabric")
     configurations = [project.configurations.shade]
     dependsOn remapJar
     from zipTree(remapJar.archiveFile)
+}
+
+
+publishing {
+    repositories {
+        maven {
+            name = "Reposilite"
+            url("https://repo.trinarywolf.net/releases")
+            credentials {
+                username(rootProject.properties['reposilite.user'] as String)
+                password(rootProject.properties['reposilite.token'] as String)
+            }
+        }
+    }
+    publications {
+        "$project.name"(MavenPublication) {
+            groupId "live.luya"
+            artifactId "eventtransactionlib-fabric"
+            version rootProject.properties['version'] as String
+            from components.java
+        }
+    }
 }
