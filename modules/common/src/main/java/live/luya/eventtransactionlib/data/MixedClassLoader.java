@@ -6,20 +6,19 @@ import java.util.List;
 
 public class MixedClassLoader extends ClassLoader {
 	private final List<ClassLoader> origin;
+	private boolean triedToFind = false;
 	private Method findClassMethod = null;
 
 	public MixedClassLoader(List<ClassLoader> origin) {
 		this.origin = origin;
-		updateFindClassMethod();
 	}
 
 	@Override
 	protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-		updateFindClassMethod();
 		for (ClassLoader loader : origin) {
-			try {
-				return (Class<?>) findClassMethod.invoke(loader, name);
-			} catch (IllegalAccessException | InvocationTargetException ignored) {
+			Class<?> clazz = findClassOrLoad(loader, name, true);
+			if (clazz != null) {
+				return clazz;
 			}
 		}
 		throw new ClassNotFoundException();
@@ -27,24 +26,40 @@ public class MixedClassLoader extends ClassLoader {
 
 	@Override
 	public Class<?> loadClass(String name) throws ClassNotFoundException {
-		updateFindClassMethod();
 		for (ClassLoader loader : origin) {
-			try {
-				return (Class<?>) findClassMethod.invoke(loader, name);
-			} catch (IllegalAccessException | InvocationTargetException ignored) {
+			Class<?> clazz = findClassOrLoad(loader, name, true);
+			if (clazz != null) {
+				return clazz;
 			}
 		}
 		throw new ClassNotFoundException();
 	}
 
+	private Class<?> findClassOrLoad(ClassLoader loader,String name,  boolean tryUseReflection) {
+		if (tryUseReflection && findClassMethod != null) {
+			updateFindClassMethod();
+			try {
+				return (Class<?>) findClassMethod.invoke(origin.get(0), "java.lang.String");
+			} catch (IllegalAccessException | InvocationTargetException e) {
+				return findClassOrLoad(loader, name, false);
+			}
+		} else {
+			try {
+				return loader.loadClass(name);
+			} catch (Exception ignored) {}
+		}
+		return null;
+	}
+
 	private void updateFindClassMethod() {
-		if (findClassMethod != null) return;
-		try {
-			if (origin.isEmpty()) return;
-			this.findClassMethod = origin.getFirst().getClass().getDeclaredMethod("findClass", String.class);
-			this.findClassMethod.setAccessible(true);
-		} catch (NoSuchMethodException e) {
-			throw new RuntimeException(e);
+		if (triedToFind) return;
+		triedToFind = true;
+		for(ClassLoader cl : origin) {
+			try {
+				this.findClassMethod = origin.getFirst().getClass().getDeclaredMethod("findClass", String.class);
+				this.findClassMethod.setAccessible(true);
+				break;
+			} catch (NoSuchMethodException ignored) {}
 		}
 	}
 }
